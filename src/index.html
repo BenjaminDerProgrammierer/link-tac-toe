@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link Tac Toe</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Dice Attack" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+</head>
+
+<body>
+    <h1 class="title"><span class="hylian-symbol">k</span> Welcome to Link Tac Toe <span class="hylian-symbol">k</span></h1>
+    <p class="subtitle">The ultimate game of strategy and skill!</p>
+    <div class="feature">
+        <p>Why play Link Tac Toe?</p>
+        <p id="why">
+            <span>Fun for all ages</span>
+            <span>Easy to learn</span>
+            <span>Quick gameplay</span>
+            <span>Great for parties</span>
+            <span>Multiplayer excitement</span>
+            <span>Enhances strategic thinking</span>
+            <span>Destroy your friends' hopes and dreams</span>
+        </p>
+    </div>
+
+    <div class="names">
+        <label for="playerOneColor">Player One's Color:</label>
+        <input type="color" id="playerOneColor" />
+        <label for="playerTwoColor">Player Two's Color:</label>
+        <input type="color" id="playerTwoColor" />
+    </div>
+    
+    <a href="play/" class="play-button">Play Now!</a>
+    
+    <footer>
+        <p>Background video by <a href="https://www.desktophut.com/zelda-totk-3840x2160-live-wallpaper">DesktopHut</a></p>
+        <p>Dice images by <a href="https://lucide.dev">Lucide</a></p>
+        <p>Fonts by <a target="_blank" href="https://ci.itch.io/">Checkered Ink</a>, <a href="https://www.deviantart.com/darkangelx" target="_blank">Jackster</a> <a href="https://artsyomni.com/hyliaserif" target="_blank">Omni</a> and <a href="https://www.creativefabrica.com/designer/jagat-golder/" target="_blank">Jagatsheth Golder</a></p>
+    </footer>
+    
+    <video src="assets/zelda-wallpaper.mp4" class="background" autoplay loop muted></video>
+    
+    <script>
+        const playerOneColor = document.querySelector('#playerOneColor');
+        const playerTwoColor = document.querySelector('#playerTwoColor');
+        const playButton = document.querySelector('.play-button');
+
+        // Load saved colors from localStorage
+        playerOneColor.value = localStorage.getItem('playerOneColor') || '';
+        playerTwoColor.value = localStorage.getItem('playerTwoColor') || '';
+
+        // Save selections to localStorage on change
+        playerOneColor.addEventListener('input', () => {
+            localStorage.setItem('playerOneColor', playerOneColor.value);
+        });
+
+        playerTwoColor.addEventListener('input', () => {
+            localStorage.setItem('playerTwoColor', playerTwoColor.value);
+        });
+
+        playButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!playerOneColor.value.trim() || !playerTwoColor.value.trim()) {
+                playButton.innerText = "Please select colors!";
+                playButton.style.fontFamily = "Arial, sans-serif";
+
+                playButton.style.backgroundColor = "var(--zelda-color-2)";
+                setTimeout(() => {
+                    playButton.innerText = "Play Now";
+                    playButton.style.fontFamily = "";
+                    playButton.style.backgroundColor = "";
+                }, 1000);
+            } else {
+                window.location.href = e.target.href;
+            }
+        });
+    </script>
+</body>
+
+</html>

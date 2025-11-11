@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+@font-face {
+  font-family: "Solid Dice";
+  src: url("./font/SolidDice-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "The Wild Breath of Zelda";
+  src: url("./font/The\ Wild\ Breath\ of\ Zelda.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Hylian Serif";
+  src: url("./font/HyliaSerifBeta-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Hylian Symbols";
+  src: url("./font/HylianSymbols.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Triforce";
+  src: url("./font/Triforce.ttf") format("truetype");
+}
+
+:root {
+  --foreground-color: #ffffff;
+
+  --frosted-border-color: #ffffff70;
+
+  --zelda-color-1: #ce9019;
+  --zelda-color-2: #61abb8;
+  --zelda-color-3: #10592e;
+  --zelda-color-4: #e8c03d;
+  --zelda-color-5: #dfcf91;
+
+  --zelda-color-1-hover: color-mix(in srgb, var(--zelda-color-1) 90%, black);
+  --zelda-color-2-hover: color-mix(in srgb, var(--zelda-color-2) 90%, black);
+  --zelda-color-3-hover: color-mix(in srgb, var(--zelda-color-3) 90%, black);
+  --zelda-color-4-hover: color-mix(in srgb, var(--zelda-color-4) 90%, black);
+  --zelda-color-5-hover: color-mix(in srgb, var(--zelda-color-5) 90%, black);
+
+  --footer-height: 80px;
+}
+
+* {
+  user-select: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: var(--foreground-color);
+  margin: 0;
+  padding: 0 0 calc(var(--footer-height) + 1rem) 0;
+}
+
+.hylian-symbol {
+  font-family: "Hylian Symbols", sans-serif;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  object-fit: cover;
+}
+
+.title {
+  font-family: "The Wild Breath of Zelda", sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+  margin: 1rem 0;
+  filter: drop-shadow(0 0 5px black);
+}
+
+h2 {
+  font-family: "Hylian Serif", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 2rem 0 1rem 0;
+  filter: drop-shadow(0 0 5px black);
+}
+
+.subtitle {
+  font-family: "Triforce", sans-serif;
+  margin: 0 auto 2rem auto;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  filter: drop-shadow(0 0 5px black);
+}
+
+.feature {
+  font-family: "Hylian Serif", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem auto;
+  background-color: var(--zelda-color-1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 5px solid var(--zelda-color-5);
+  width: 400px;
+  height: fit-content;
+  overflow: hidden;
+
+  transition: all 0.3s ease;
+
+  &>* {
+    text-align: center;
+    margin: 0 0 10px 0;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  #why {
+    text-wrap: nowrap;
+    animation: scroll-left 20s linear infinite;
+    user-select: none;
+    width: fit-content;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+
+    &>* {
+      &::after {
+        content: ' \0023FA ';
+      }
+
+      &:last-child::after {
+        content: '';
+      }
+    }
+  }
+}
+
+.play-button {
+  display: block;
+  font-family: "Solid Dice", sans-serif;
+  font-size: 3rem;
+  background-color: var(--zelda-color-3);
+  color: var(--foreground-color);
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 0 auto;
+  width: fit-content;
+  transition: all 0.3s ease;
+
+  &.subtle {
+    font-family: "Triforce", sans-serif;
+    padding: 1rem 2rem;
+  }
+
+  &:hover {
+    background-color: var(--zelda-color-3-hover);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px var(--zelda-color-3);
+  }
+}
+
+#score {
+  font-family: "Hylian Serif", sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1rem 0;
+
+  & span {
+    font-weight: bold;
+    margin: 0 1rem;
+  }
+}
+
+#game {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5px;
+
+  /* Frosted */
+  background-color: #ffffff20;
+  border: 2px solid var(--frosted-border-color);
+  backdrop-filter: blur(10px);
+  width: min(700px, 90vw);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  border-radius: 1rem;
+  padding: 1rem;
+
+  /* Grid style */
+  & > .cell {
+    background-color: #ffffff30;
+    border: 2px solid var(--frosted-border-color);
+    backdrop-filter: blur(5px);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #ffffff50;
+    }
+
+    &.clicked {
+      scale: 0.9;
+    }
+  }
+
+  & .win-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    grid-column: 1 / -1;
+    font-family: "The Wild Breath of Zelda", sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--foreground-color);
+    text-shadow: 0 0 5px black;
+
+    button {
+      margin-top: 1rem;
+      font-family: "Hylian Serif", sans-serif;
+      font-size: 2rem;
+      background-color: var(--zelda-color-2);
+      color: var(--foreground-color);
+      padding: 0.5rem 2rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: var(--zelda-color-2-hover);
+        transform: scale(1.05);
+        box-shadow: 0 0 10px var(--zelda-color-2);
+      }
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  height: var(--footer-height);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  backdrop-filter: blur(5px);
+  text-align: center;
+  font-size: 0.6rem;
+  color: var(--foreground-color);
+  border-top: 1px solid var(--frosted-border-color);
+
+  & a {
+    color: var(--foreground-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes wiggle {
+
+  /* Wiggle by rotating 5deg per step, 10 steps total */
+  0% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(5deg);
+  }
+
+  20% {
+    transform: rotate(-5deg);
+  }
+
+  30% {
+    transform: rotate(5deg);
+  }
+
+  40% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+
+  60% {
+    transform: rotate(-5deg);
+  }
+
+  70% {
+    transform: rotate(5deg);
+  }
+
+  80% {
+    transform: rotate(-5deg);
+  }
+
+  90% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes swipeDown {
+  0% {
+    transform: translateY(0);
+  }
+
+  99% {
+    transform: translateY(20%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
