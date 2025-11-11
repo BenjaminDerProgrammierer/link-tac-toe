@@ -1,11 +1,11 @@
-# Dice Attack
+# Link Tac Toe
 
-A simple dice game where players roll dice to achieve the highest score.
+Tic Tac Toe on Steroids
 
 ## Quick Links
 
-* [GitHub Repository](https://github.com/BenjaminDerProgrammierer/dice-attack)
-* [Play Online](https://benjaminderprogrammierer.github.io/dice-attack/)
+* [GitHub Repository](https://github.com/BenjaminDerProgrammierer/link-tac-toe/)
+* [Play Online](https://benjaminderprogrammierer.github.io/link-tac-toe/)
 
 ## IMPORTANT
 
