@@ -146,9 +146,51 @@ h2 {
   }
 }
 
+.colors {
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  background-color: #00000080;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--frosted-border-color);
+  flex-wrap: wrap;
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  & label {
+    font-family: "Hylian Serif", sans-serif;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  & input[type="color"] {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background: none;
+  }
+
+  select {
+    font-family: "Hylian Symbols", sans-serif;
+
+    font-size: 1.5rem;
+    padding: 0.2rem 0.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+  }
+}
+
 .play-button {
   display: block;
-  font-family: "Solid Dice", sans-serif;
+  font-family: "Hylian Serif", sans-serif;
   font-size: 3rem;
   background-color: var(--zelda-color-3);
   color: var(--foreground-color);
@@ -202,6 +244,7 @@ h2 {
 
   /* Grid style */
   & > .cell {
+    font-family: "Hylian Symbols", sans-serif;
     background-color: #ffffff30;
     border: 2px solid var(--frosted-border-color);
     backdrop-filter: blur(5px);
@@ -212,6 +255,8 @@ h2 {
     font-size: 5rem;
     cursor: pointer;
     transition: all 0.2s ease;
+    /* drop shadow */
+    filter: drop-shadow(0 0 5px black);
 
     &:hover {
       background-color: #ffffff50;

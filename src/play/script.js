@@ -4,10 +4,15 @@ const scoreElement = document.getElementById('score');
 let player1Score = 0;
 let player2Score = 0;
 
+const PLAYER_1 = 'playerone';
+const PLAYER_2 = 'playertwo';
+
 const playerOneColor = localStorage.getItem('playerOneColor');
 const playerTwoColor = localStorage.getItem('playerTwoColor');
+const playerOneSymbol = localStorage.getItem('playerOneSymbol');
+const playerTwoSymbol = localStorage.getItem('playerTwoSymbol');
 
-if (!playerOneColor || !playerTwoColor) {
+if (!playerOneColor || !playerTwoColor || !playerOneSymbol || !playerTwoSymbol) {
     window.location.href = '../';
 }
 
@@ -26,14 +31,16 @@ for (let i = 0; i < 9; i++) {
     gameElement.appendChild(cell);
 }
 
-let currentPlayer = '✘';
+let currentPlayer = PLAYER_1;
 
 boardElements.forEach((cell, index) => {
     cell.addEventListener('click', () => {
         if (cell.textContent === '') {
-            cell.textContent = currentPlayer;
-            cell.style.color = currentPlayer === '✘' ? playerOneColor : playerTwoColor;
-            currentPlayer = currentPlayer === '✘' ? '✔' : '✘';
+            const plopAudio = new Audio('../assets/plop.mp3');
+            plopAudio.play();
+            cell.textContent = currentPlayer === PLAYER_1 ? playerOneSymbol : playerTwoSymbol;
+            cell.style.color = currentPlayer === PLAYER_1 ? playerOneColor : playerTwoColor;
+            currentPlayer = currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1;
             cell.classList.add('clicked');
             setTimeout(() => {
                 cell.classList.remove('clicked');
@@ -41,7 +48,7 @@ boardElements.forEach((cell, index) => {
 
             const row = Math.floor(index / 3);
             const col = index % 3;
-            gameMatrix[row][col] = cell.textContent === '✘' ? 1 : -1;
+            gameMatrix[row][col] = cell.textContent === playerOneSymbol ? 1 : -1;
         }
         checkWon();
     });
@@ -87,18 +94,18 @@ function winPlayer(player) {
     message.classList.add('win-message');
 
     if (player === 1) {
-        message.textContent = 'Player 1 Wins! ✘';
+        message.textContent = 'Player 1 Wins!';
         message.style.color = playerOneColor;
         player1Score++;
     } else if (player === 2) {
-        message.textContent = 'Player 2 Wins! ✔';
+        message.textContent = 'Player 2 Wins!';
         message.style.color = playerTwoColor;
         player2Score++;
     } else {
         message.textContent = "It's a Draw!";
-        message.style.color = '#888';
+        message.style.color = 'white';
     }
-    
+
 
     const resetButton = document.createElement('button');
     resetButton.textContent = 'Play Again';

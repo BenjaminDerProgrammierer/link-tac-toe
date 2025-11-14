@@ -18,7 +18,8 @@
 </head>
 
 <body>
-    <h1 class="title"><span class="hylian-symbol">k</span> Welcome to Link Tac Toe <span class="hylian-symbol">k</span></h1>
+    <h1 class="title"><span class="hylian-symbol">k</span> Welcome to Link Tac Toe <span class="hylian-symbol">k</span>
+    </h1>
     <p class="subtitle">The ultimate game of strategy and skill!</p>
     <div class="feature">
         <p>Why play Link Tac Toe?</p>
@@ -33,31 +34,84 @@
         </p>
     </div>
 
-    <div class="names">
+    <div class="colors">
         <label for="playerOneColor">Player One's Color:</label>
         <input type="color" id="playerOneColor" />
+        <label for="playerOneSymbol">Player One's Symbol:</label>
+        <select name="playerOneSymbol" id="playerOneSymbol">
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+            <option value="d">d</option>
+            <option value="e">e</option>
+            <option value="f">f</option>
+            <option value="g">g</option>
+            <option value="h">h</option>
+            <option value="i">i</option>
+            <option value="j">j</option>
+            <option value="k">k</option>
+            <option value="l">l</option>
+            <option value="m">m</option>
+            <option value="n">n</option>
+            <option value="o">o</option>
+            <option value="p">p</option>
+            <option value="q">q</option>
+            <option value="r">r</option>
+            <option value="s">s</option>
+        </select>
         <label for="playerTwoColor">Player Two's Color:</label>
         <input type="color" id="playerTwoColor" />
+        <label for="playerTwoSymbol">Player Two's Symbol:</label>
+        <select name="playerTwoSymbol" id="playerTwoSymbol">
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+            <option value="d">d</option>
+            <option value="e">e</option>
+            <option value="f">f</option>
+            <option value="g">g</option>
+            <option value="h">h</option>
+            <option value="i">i</option>
+            <option value="j">j</option>
+            <option value="k">k</option>
+            <option value="l">l</option>
+            <option value="m">m</option>
+            <option value="n">n</option>
+            <option value="o">o</option>
+            <option value="p">p</option>
+            <option value="q">q</option>
+            <option value="r">r</option>
+            <option value="s">s</option>
+        </select>
     </div>
-    
+
     <a href="play/" class="play-button">Play Now!</a>
-    
+
     <footer>
-        <p>Background video by <a href="https://www.desktophut.com/zelda-totk-3840x2160-live-wallpaper">DesktopHut</a></p>
+        <p>Background video by <a href="https://www.desktophut.com/zelda-totk-3840x2160-live-wallpaper">DesktopHut</a>
+        </p>
         <p>Dice images by <a href="https://lucide.dev">Lucide</a></p>
-        <p>Fonts by <a target="_blank" href="https://ci.itch.io/">Checkered Ink</a>, <a href="https://www.deviantart.com/darkangelx" target="_blank">Jackster</a> <a href="https://artsyomni.com/hyliaserif" target="_blank">Omni</a> and <a href="https://www.creativefabrica.com/designer/jagat-golder/" target="_blank">Jagatsheth Golder</a></p>
+        <p>Fonts by <a target="_blank" href="https://ci.itch.io/">Checkered Ink</a>, <a
+                href="https://www.deviantart.com/darkangelx" target="_blank">Jackster</a> <a
+                href="https://artsyomni.com/hyliaserif" target="_blank">Omni</a> and <a
+                href="https://www.creativefabrica.com/designer/jagat-golder/" target="_blank">Jagatsheth Golder</a></p>
     </footer>
-    
+
     <video src="assets/zelda-wallpaper.mp4" class="background" autoplay loop muted></video>
-    
+
     <script>
         const playerOneColor = document.querySelector('#playerOneColor');
         const playerTwoColor = document.querySelector('#playerTwoColor');
+        const playerOneSymbol = document.querySelector('#playerOneSymbol');
+        const playerTwoSymbol = document.querySelector('#playerTwoSymbol');
         const playButton = document.querySelector('.play-button');
 
         // Load saved colors from localStorage
         playerOneColor.value = localStorage.getItem('playerOneColor') || '';
         playerTwoColor.value = localStorage.getItem('playerTwoColor') || '';
+        playerOneSymbol.value = localStorage.getItem('playerOneSymbol') || 'a';
+        playerTwoSymbol.value = localStorage.getItem('playerTwoSymbol') || 'a';
+
 
         // Save selections to localStorage on change
         playerOneColor.addEventListener('input', () => {
@@ -66,6 +120,14 @@
 
         playerTwoColor.addEventListener('input', () => {
             localStorage.setItem('playerTwoColor', playerTwoColor.value);
+        });
+
+        playerOneSymbol.addEventListener('change', () => {
+            localStorage.setItem('playerOneSymbol', playerOneSymbol.value);
+        });
+
+        playerTwoSymbol.addEventListener('change', () => {
+            localStorage.setItem('playerTwoSymbol', playerTwoSymbol.value);
         });
 
         playButton.addEventListener('click', (e) => {
